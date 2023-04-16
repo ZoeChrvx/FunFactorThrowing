@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+        public bool throwing;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -20,8 +21,16 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        public void Update()
+        {
+			if (throwing)
+			{
+				Throwing.instance.Throw();
+			}
+        }
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -34,7 +43,12 @@ namespace StarterAssets
 			}
 		}
 
-		public void OnJump(InputValue value)
+        public void OnThrow(InputValue value)
+        {
+			ThrowInput(value.isPressed);
+        }
+
+        public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
 		}
@@ -45,8 +59,12 @@ namespace StarterAssets
 		}
 #endif
 
+        public void ThrowInput(bool newThrowState)
+        {
+			throwing = newThrowState;
+        }
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
