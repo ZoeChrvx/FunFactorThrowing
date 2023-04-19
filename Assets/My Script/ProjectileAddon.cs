@@ -10,6 +10,8 @@ public class ProjectileAddon : MonoBehaviour
 
     private bool targetHit;
 
+    public GameObject smoke;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,7 +30,7 @@ public class ProjectileAddon : MonoBehaviour
 
         if(collision.gameObject.GetComponent<BasicEnemy>() != null)
         {
-            Debug.Log("Ca touche");
+            smoke.SetActive(true);
 
             BasicEnemy enemy = collision.gameObject.GetComponent<BasicEnemy>();
 

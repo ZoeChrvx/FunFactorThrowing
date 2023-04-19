@@ -80,7 +80,7 @@ public class Throwing : MonoBehaviour
 
         Invoke("ResetThrow", throwCooldown);
 
-        Destroy(projectile, 10f);
+        Destroy(projectile, 2f);
     }
 
     void ResetThrow()

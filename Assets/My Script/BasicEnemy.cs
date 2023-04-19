@@ -6,6 +6,7 @@ public class BasicEnemy : MonoBehaviour
 {
     [Header("Stats")]
     public int health;
+    public GameObject explosion;
 
     public void TakeDamage(int damage)
     {
@@ -13,6 +14,7 @@ public class BasicEnemy : MonoBehaviour
 
         if(health <= 0)
         {
+            explosion.SetActive(true);
             Destroy(gameObject);
         }
     }
